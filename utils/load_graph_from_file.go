@@ -3,23 +3,19 @@ package utils
 import (
 	"bufio"
 	"os"
-	"strconv"
 )
 
-func ReadNumbersFromFile(fileName string) ([]int, error) {
+func ReadCitiesFromFile(fileName string, cities *[]string) error {
 	file, err := os.Open(fileName)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer file.Close()
 
-	var numbers []int
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		num, err := strconv.Atoi(scanner.Text())
-		if err == nil {
-			numbers = append(numbers, num)
-		}
+		city := scanner.Text()
+		*cities = append(*cities, city)
 	}
-	return numbers, scanner.Err()
+	return scanner.Err()
 }
