@@ -1,23 +1,18 @@
 package main
 
 import (
-	"fmt"
-	//"go-simple-city-graph/internal/graph"
+	"go-simple-city-graph/internal/graph"
 	"go-simple-city-graph/utils"
 )
 
-//"fmt"
-
 func main() {
 
-	//cityIndex := make(map[string]*graph.CityNode)
+	var citiesArray [][]string
 
-	//Build graph
+	utils.ReadCitiesFromFile("cityConnections.csv", &citiesArray)
 
-	var cities [][]string
+	cityList := make(map[string]*graph.CityNode)
 
-	utils.ReadCitiesFromFile("cityConnections.csv", &cities)
+	graph.CreateGraph(&citiesArray, &cityList)
 
-	fmt.Println("Loaded")
-	fmt.Println(cities)
 }
