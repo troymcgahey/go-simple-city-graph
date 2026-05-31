@@ -1,21 +1,36 @@
 package utils
 
 import (
-	"bufio"
+	"encoding/csv"
+	"fmt"
+	"io"
 	"os"
 )
 
-func ReadCitiesFromFile(fileName string, cities *[]string) error {
+func ReadCitiesFromFile(fileName string, cities *[][]string) error {
+
+	fmt.Println(fileName)
+
 	file, err := os.Open(fileName)
 	if err != nil {
-		return err
+		panic(err)
 	}
 	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		city := scanner.Text()
-		*cities = append(*cities, city)
+	reader := csv.NewReader(file)
+
+	for {
+		record, err := reader.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println(record)
+		*cities = append(*cities, record)
 	}
-	return scanner.Err()
+
+	return err
 }
