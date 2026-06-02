@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-func CreateGraph(citiesArray *[][]string, cityList *map[string]*CityNode) {
+func CreateGraph(citiesArray [][]string, cityList map[string]*CityNode) {
 
-	for rowIndex, row := range *citiesArray {
+	for rowIndex, row := range citiesArray {
 
-		originCity := *citiesArray[row][0]
+		originCity := citiesArray[rowIndex][0]
 
 		for colIndex, city := range row {
 			fmt.Printf(
@@ -22,11 +22,10 @@ func CreateGraph(citiesArray *[][]string, cityList *map[string]*CityNode) {
 				break
 			} else {
 				//check if city is already in the arraylist if not, createa new node and add it to the list
-				if node, exists := cityList[city]; !exists {
+				if _, exists := cityList[city]; !exists {
 					//create new node
 					newNode := &CityNode{
-						City:        city,
-						Connections: {},
+						City: city,
 					}
 					cityList[city] = newNode
 				}
@@ -34,8 +33,10 @@ func CreateGraph(citiesArray *[][]string, cityList *map[string]*CityNode) {
 
 			//if not an origin city, add this city to the origin cities connection list
 			if colIndex > 0 {
-				originCity.Connections.append(&newNode)
+
+				append(originCity.Connections, newNode)
 			}
+
 		}
 	}
 
