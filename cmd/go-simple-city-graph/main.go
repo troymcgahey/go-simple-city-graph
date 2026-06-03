@@ -24,8 +24,23 @@ func main() {
 		return
 	}
 
+	//validate source and destination exists in CityList
+	//if not, errror and exist
+
+	if _, exists := cityList[os.Args[1]]; !exists {
+		fmt.Println("Source city does not exist")
+		return
+	}
+
+	if _, exists := cityList[os.Args[2]]; !exists {
+		fmt.Println("Destination city does not exist")
+	}
+
+	//if _, exists := cityList[city]; !exists {
+
 	//bfs
 
+	//graph.SearchGraphBFS(cityList, cityList[os.Args[1]], cityList(os.Args[2]))
 	//dfs
 
 }
