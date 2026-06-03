@@ -15,4 +15,10 @@ func main() {
 
 	graph.CreateGraph(citiesArray, cityList)
 
+	//prompt for a starting city and find a path to a destination city
+
+	//bfs
+
+	//dfs
+
 }
