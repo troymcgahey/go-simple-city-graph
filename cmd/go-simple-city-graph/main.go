@@ -13,6 +13,6 @@ func main() {
 
 	cityList := make(map[string]*graph.CityNode)
 
-	graph.CreateGraph(&citiesArray, &cityList)
+	graph.CreateGraph(citiesArray, cityList)
 
 }
