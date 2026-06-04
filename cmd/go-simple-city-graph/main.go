@@ -40,7 +40,11 @@ func main() {
 
 	//bfs
 
-	//graph.SearchGraphBFS(cityList, cityList[os.Args[1]], cityList(os.Args[2]))
+	if graph.SearchGraphBFS(cityList, os.Args[1], os.Args[2]) {
+		fmt.Println("Connection route found")
+	} else {
+		fmt.Println("Connection route not found")
+	}
 	//dfs
 
 }

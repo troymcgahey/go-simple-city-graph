@@ -1,22 +1,14 @@
 package graph
 
-import (
-	"fmt"
-)
+import "strings"
+
+//"fmt"
 
 func CreateGraph(citiesArray [][]string, cityList map[string]*CityNode) {
 
 	for rowIndex, row := range citiesArray {
 
-		//originCity := citiesArray[rowIndex][0]
-
 		for colIndex, city := range row {
-			fmt.Printf(
-				"row=%d col=%d city=%s\n",
-				rowIndex,
-				colIndex,
-				city,
-			)
 
 			if city == "" {
 				break
@@ -25,7 +17,7 @@ func CreateGraph(citiesArray [][]string, cityList map[string]*CityNode) {
 				if _, exists := cityList[city]; !exists {
 					//create new node and add it to the list
 					cityList[city] = &CityNode{
-						City: city,
+						City: strings.TrimSpace(city),
 					}
 				}
 			}
