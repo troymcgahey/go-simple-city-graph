@@ -2,14 +2,11 @@ package utils
 
 import (
 	"encoding/csv"
-	"fmt"
 	"io"
 	"os"
 )
 
 func ReadCitiesFromFile(fileName string, cities *[][]string) error {
-
-	fmt.Println(fileName)
 
 	file, err := os.Open(fileName)
 	if err != nil {
@@ -28,7 +25,6 @@ func ReadCitiesFromFile(fileName string, cities *[][]string) error {
 			panic(err)
 		}
 
-		fmt.Println(record)
 		*cities = append(*cities, record)
 	}
 

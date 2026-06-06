@@ -36,15 +36,10 @@ func main() {
 		fmt.Println("Destination city does not exist")
 	}
 
-	//if _, exists := cityList[city]; !exists {
-
-	//bfs
-
 	if graph.SearchGraphBFS(cityList, os.Args[1], os.Args[2]) {
 		fmt.Println("Connection route found")
 	} else {
 		fmt.Println("Connection route not found")
 	}
-	//dfs
 
 }

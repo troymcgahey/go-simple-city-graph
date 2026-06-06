@@ -1,7 +1,7 @@
-Portland, Chicago, New York, , 
-Boston, Paris, London, Chicago, San Francisco
-New York, Portland, Chicago, , 
-Chicago, San Francisco, New York, Portland, Boston
-SanFrancisco, Chicago, Boston, ,
-London, Boston, Paris, ,
-Paris, London, Boston, ,
+Portland,Chicago,NewYork,, 
+Boston,Paris,London,Chicago,SanFrancisco
+NewYork,Portland,Chicago,, 
+Chicago,SanFrancisco,NewYork,Portland,Boston
+SanFrancisco,Chicago,Boston,,
+London,Boston,Paris,,
+Paris,London,Boston,,
