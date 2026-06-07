@@ -5,50 +5,58 @@ import "fmt"
 func SearchGraphBFS(cityGraph map[string]*CityNode, startCity string, destinationCity string) bool {
 
 	type connectionCityNode struct {
-		cityNode      *CityNode
-		connectedFrom *CityNode
+		connectionCity string
+		connectedFrom  string
 	}
 
-	var newConnectionCity *connectionCityNode
+	var newConnectionCity connectionCityNode
 
-	newConnectionCity = &connectionCityNode{
-		cityNode: cityGraph[startCity],
+	newConnectionCity = connectionCityNode{
+		connectionCity: startCity,
 	}
 
-	searchCityList := []*connectionCityNode{newConnectionCity}
+	searchCityList := []connectionCityNode{newConnectionCity}
 
-	//for lineage, need to a reference for each CityNode, where it was connected from
+	x := 0
 
-	for len(searchCityList) > 0 {
+	for x < len(searchCityList) {
 
 		//set the currentCity to the first element in the searchCityList Slice
-		currentCity := searchCityList[0]
+		currentCityNode := searchCityList[x]
 
-		//Remove the currentCity from the searchCityList
-		searchCityList = searchCityList[1:]
+		fmt.Println("CurrentCity ", currentCityNode.connectionCity)
 
-		if currentCity.cityNode.City == "" {
+		if currentCityNode.connectionCity == "" {
 			continue
+			x++
 		}
 
-		if currentCity.cityNode.City == destinationCity {
+		if currentCityNode.connectionCity == destinationCity {
 
-			fmt.Println("Connected from ", currentCity.connectedFrom.City)
+			fmt.Println("Connection Route Found from ", startCity, " to ", destinationCity)
+
+			for currentCityNode.connectedFrom != startCity {
+
+				fmt.Println("Connect from ", currentCityNode.connectionCity)
+
+			}
 			return true
 		}
 
-		for i, _ := range currentCity.cityNode.Connections {
-			//for len(currentCity.cityNode.Connections) > 0 {
+		for i := range cityGraph[currentCityNode.connectionCity].Connections {
 
-			newConnectionCity = &connectionCityNode{
-				cityNode:      currentCity.cityNode.Connections[i],
-				connectedFrom: currentCity.cityNode,
+			newConnectionCity := connectionCityNode{
+				connectionCity: cityGraph[currentCityNode.connectionCity].Connections[i].City,
+				connectedFrom:  currentCityNode.connectionCity,
 			}
+
+			fmt.Println("New Connection City ", newConnectionCity.connectionCity)
 
 			searchCityList = append(searchCityList, newConnectionCity)
 
-			i++
 		}
+
+		x++
 	}
 
 	return false
